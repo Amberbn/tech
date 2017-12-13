@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en" class="fixed left-sidebar-top">
+{{template "head.tmpl" .}}
+
+<body>
+  <div class="wrap">
+    <!-- page HEADER -->
+    <!-- ========================================================= -->
+    <div class="page-header">
+      <!-- LEFTSIDE header -->
+      {{template "leftSideHeader.tmpl" .}}
+    </div>
+    <!-- page BODY -->
+    <!-- ========================================================= -->
+    <div class="page-body">
+      <!-- LEFT SIDEBAR -->
+      <!-- ========================================================= -->
+      <div class="left-sidebar">
+        <!-- left sidebar HEADER -->
+        {{template "leftSidebar.tmpl" .}}
+      </div>
+      <!-- CONTENT -->
+      <!-- ========================================================= -->
+      <div class="content">
+        <!-- content HEADER -->
+        <!-- ========================================================= -->
+        {{template "content" .}}
+
+        <!-- =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= -->
+      </div>
+      <!-- RIGHT SIDEBAR -->
+      <!-- ========================================================= -->
+      <div class="right-sidebar">
+        {{template "rightSidebar.tmpl" .}}
+      </div>
+      <!--scroll to top-->
+      <a href="#" class="scroll-to-top"><i class="fa fa-angle-double-up"></i></a>
+    </div>
+  </div>
+  <!--BASIC scripts-->
+  <!-- ========================================================= -->
+  {{template "scripts.tmpl" .}}
+</body>
+
+</html>

@@ -1,0 +1,26 @@
+package: tech
+import:
+- package: github.com/blue-jay/core
+  subpackages:
+  - asset
+  - email
+  - flash
+  - form
+  - generate
+  - jsonconfig
+  - pagination
+  - passhash
+  - router
+  - server
+  - session
+  - storage/driver/mysql
+  - view
+  - xsrf
+- package: github.com/go-sql-driver/mysql
+- package: github.com/gorilla/context
+- package: github.com/gorilla/csrf
+- package: github.com/gorilla/sessions
+- package: github.com/husobee/vestigo
+- package: github.com/jmoiron/sqlx
+- package: github.com/Masterminds/cookoo
+  version: ^1.3.0

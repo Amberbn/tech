@@ -1,0 +1,56 @@
+{{define "head"}}{{end}} {{define "leftSideHeader"}}{{end}} {{define "leftSidebar"}}{{end}} {{define "content"}}
+
+<div class="content-header">
+  <!-- leftside content header -->
+  <div class="leftside-content-header">
+    <ul class="breadcrumbs">
+      <li><i class="fa fa-table" aria-hidden="true"></i><a href="#">Tables</a></li>
+      <li><a>Category</a></li>
+    </ul>
+  </div>
+</div>
+
+<!--BOOTSTRAP-->
+<div class="col-sm-12">
+  <h4 class="section-subtitle"><b>Table</b> Category</h4>
+  <div class="form-group ">
+    <a href=""><button class="btn btn-primary pull-left" type="button" name="button">Add</button></a>
+    <div class="col-sm-6">
+      <div class="input-group pull-right">
+        <input type="text" class="form-control" id="button-addon" placeholder="Search">
+        <span class="input-group-btn">
+          <button class="btn btn-primary" type="button">Search</button>
+        </span>
+      </div>
+    </div>
+  </div>
+  <br><br>
+
+  <div class="panel">
+    <div class="panel-content">
+      <div class="table-responsive">
+        <table class="table table-striped table-hover">
+          <thead>
+            <tr>
+              <th>Name category</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{range $n := .items}}
+            <tr>
+              <td>{{.NameCategory}}</td>
+              <td>
+                <a href="{{$.CurrentURI}}/edit/{{.ID}}"><button class="btn btn-warning" type="button" name="button">Edit</button></a>
+                <a href="{{$.CurrentURI}}/view/{{.ID}}"><button class="btn btn-success" type="button" name="button">Detail</button></a>
+                <a href="{{$.CurrentURI}}/delete/{{.ID}}"><button class="btn btn-danger" type="button" name="button">Delete</button></a>
+              </td>
+            </tr>
+            {{end}}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+{{end}} {{define "rightSidebar"}}{{end}} {{define "scripts"}}{{end}}

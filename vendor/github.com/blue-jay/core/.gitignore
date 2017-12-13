@@ -1,0 +1,6 @@
+# Folders
+/vendor/
+
+# OS Files
+.DS_Store
+thumbs.db
