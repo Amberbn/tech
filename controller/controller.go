@@ -4,7 +4,6 @@ package controller
 import (
 	"tech/controller/about"
 	"tech/controller/cms/category"
-	"tech/controller/cms/subcategory"
 	"tech/controller/debug"
 	"tech/controller/home"
 	"tech/controller/login"
@@ -25,5 +24,4 @@ func LoadRoutes() {
 	status.Load()
 	notepad.Load()
 	category.Load()
-	subcategory.Load()
 }

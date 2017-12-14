@@ -20,6 +20,7 @@ func Load() {
 	router.Get(uri+"/create", Create, c...)
 	router.Post(uri+"/create", Store, c...)
 	router.Get(uri+"/view/:id", Show, c...)
+	router.Get(uri+"/edit/:id", Edit, c...)
 }
 
 func Index(w http.ResponseWriter, r *http.Request) {
@@ -75,6 +76,22 @@ func Show(w http.ResponseWriter, r *http.Request) {
 	}
 
 	v := c.View.New("cms/category/detail")
+	v.Vars["item"] = item
+	v.Render(w, r)
+}
+
+func Edit(w http.ResponseWriter, r *http.Request) {
+	c := flight.Context(w, r)
+
+	item, _, err := category.ById(c.DB, c.Param("id"))
+	if err != nil {
+		c.FlashErrorGeneric(err)
+		c.Redirect(uri)
+		return
+	}
+
+	v := c.View.New("cms/category/edit")
+	c.Repopulate(v.Vars, "name_category")
 	v.Vars["item"] = item
 	v.Render(w, r)
 }

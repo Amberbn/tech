@@ -60,3 +60,15 @@ func ById(db Connection, ID string) (Item, bool, error) {
 	`, table), ID)
 	return result, err == sql.ErrNoRows, err
 }
+
+func Update(db Connection, namecategory string, ID string) (sql.Result, error) {
+	result, err := db.Exec(fmt.Sprintf(`
+		UPDATE %v
+		SET name_category = ?
+		WHERE id = ?
+			AND deleted_at IS NULL
+		LIMIT 1
+		`, table),
+		namecategory, ID)
+	return result, err
+}
