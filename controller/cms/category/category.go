@@ -21,6 +21,7 @@ func Load() {
 	router.Post(uri+"/create", Store, c...)
 	router.Get(uri+"/view/:id", Show, c...)
 	router.Get(uri+"/edit/:id", Edit, c...)
+	router.Patch(uri+"/edit/:id", Update, c...)
 }
 
 func Index(w http.ResponseWriter, r *http.Request) {
@@ -94,4 +95,23 @@ func Edit(w http.ResponseWriter, r *http.Request) {
 	c.Repopulate(v.Vars, "name_category")
 	v.Vars["item"] = item
 	v.Render(w, r)
+}
+
+func Update(w http.ResponseWriter, r *http.Request) {
+	c := flight.Context(w, r)
+
+	if !c.FormValid("name_category") {
+		Edit(w, r)
+		return
+	}
+
+	_, err := category.Update(c.DB, r.FormValue("name_category"), c.Param("id"))
+	if err != nil {
+		c.FlashErrorGeneric(err)
+		Edit(w, r)
+		return
+	}
+
+	c.FlashSuccess("Item updated.")
+	c.Redirect(uri)
 }
