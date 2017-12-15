@@ -22,6 +22,8 @@ func Load() {
 	router.Get(uri+"/view/:id", Show, c...)
 	router.Get(uri+"/edit/:id", Edit, c...)
 	router.Patch(uri+"/edit/:id", Update, c...)
+	router.Get(uri+"/delete/:id", Delete, c...)
+	router.Delete(uri+"/:id", Destroy, c...)
 }
 
 func Index(w http.ResponseWriter, r *http.Request) {
@@ -113,5 +115,35 @@ func Update(w http.ResponseWriter, r *http.Request) {
 	}
 
 	c.FlashSuccess("Item updated.")
+	c.Redirect(uri)
+}
+
+func Delete(w http.ResponseWriter, r *http.Request) {
+	c := flight.Context(w, r)
+
+	item, _, err := category.ById(c.DB, c.Param("id"))
+	if err != nil {
+		c.FlashErrorGeneric(err)
+		c.Redirect(uri)
+		return
+	}
+
+	v := c.View.New("cms/category/delete")
+	v.Vars["item"] = item
+	v.Render(w, r)
+}
+
+func Destroy(w http.ResponseWriter, r *http.Request) {
+	c := flight.Context(w, r)
+
+	b := c.Param("id")
+	fmt.Println("parammmm=", b)
+	_, err := category.DeleteHard(c.DB, c.Param("id"))
+	if err != nil {
+		c.FlashErrorGeneric(err)
+	} else {
+		c.FlashNotice("Item deleted.")
+	}
+
 	c.Redirect(uri)
 }

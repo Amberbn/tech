@@ -72,3 +72,14 @@ func Update(db Connection, namecategory string, ID string) (sql.Result, error) {
 		namecategory, ID)
 	return result, err
 }
+
+// DeleteHard removes an item.
+func DeleteHard(db Connection, ID string) (sql.Result, error) {
+	result, err := db.Exec(fmt.Sprintf(`
+		DELETE FROM %v
+		WHERE id = ?
+			AND deleted_at IS NULL
+		`, table),
+		ID)
+	return result, err
+}
