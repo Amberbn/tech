@@ -1,0 +1,3 @@
+Rancangan
+form : categories, subcategories, articles, users, comments
+table: categories, subcategories, articles, users, comments
