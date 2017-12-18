@@ -42,14 +42,22 @@
               <td>{{.NameCategory}}</td>
               <td style="white-space: nowrap;">
 
-                <a title="View" class="btn btn-info btn-sm btn-responsive" role="button" href="{{$.CurrentURI}}/view/{{.ID}}">
+                <!-- <a title="View" class="btn btn-info btn-sm btn-responsive" role="button" href="{{$.CurrentURI}}/view/{{.ID}}">
             		    <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
             		</a>
                 <a title="Edit" class="btn btn-warning btn-sm btn-responsive" role="button" href="{{$.CurrentURI}}/edit/{{.ID}}">
             				<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
             		</a>
 
+                <a title="Edit" data-method="delete" class="btn btn-warning btn-sm btn-responsive" role="button" href="{{$.CurrentURI}}/{{.ID}}?_method=delete">
+            				<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+            		</a> -->
+
                 <form class="button-form" method="post" action="{{$.CurrentURI}}/{{.ID}}?_method=delete">
+                  <button type="button" class="btn btn-info btn-sm btn-responsive" />
+                  <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+                  </button>
+
                   <button onclick="return confirm('Are you sure?')" type="submit" class="btn btn-danger btn-sm btn-responsive" />
                   <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
                   </button>
